@@ -11,7 +11,7 @@ NANT = $(strip $(shell which nant 2>/dev/null))
 all: update build
 
 init:
-	@echo "### osmake initialization ###"
+	@echo "### OpenSim sources tree initialization ###"
 	@git remote add -f opensim $(repo)
 	@git merge -s ours --no-commit opensim/master
 	@git read-tree --prefix=sources -u opensim/master
