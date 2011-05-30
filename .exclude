@@ -1,0 +1,11 @@
+*~
+SimpleApp*
+OpenSim.TestSuite*
+Prebuild.exe*
+OpenSim.Tests.Clients*
+*MXP*
+Robust.*
+OpenSim.Tools.lslc.*
+*.Tests.dll.*
+TESTING.txt
+BUILDING.txt
