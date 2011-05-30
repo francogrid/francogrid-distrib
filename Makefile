@@ -35,7 +35,6 @@ clean:
 	@cd sources; ${NANT} clean;
 
 archive:
-	@if ! test -d "sources"; then make build; fi
 	@rev=$(shell cat sources/bin/.version | awk '{print $$NF}'); \
 	distrib=francogrid-$${rev}; zip=$${distrib}.zip; \
 	if test -f "$${zip}"; then \
