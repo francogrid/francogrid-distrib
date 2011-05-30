@@ -35,6 +35,9 @@ clean:
 	@cd sources; ${NANT} clean;
 
 archive:
+	@if ! test -r "sources/bin/.version"; then \
+		echo ".version file is missing, aborting..."; exit 1; \
+	fi
 	@rev=$(shell cat sources/bin/.version | awk '{print $$NF}'); \
 	distrib=francogrid-$${rev}; zip=$${distrib}.zip; \
 	if test -f "$${zip}"; then \
