@@ -53,7 +53,7 @@ install: test-param-dir
 	@if ! test -d "$(etcdir)"; then mkdir $(etcdir); fi
 	@cd sources; tar cf - bin | tar xf - -C $(dirpath)
 	@tar cf - etc | tar xf - -C $(dirpath)
-	@cp -a start $(dirpath)/
+	@cp -a tools/* $(dirpath)/
 ifneq ("$(user)", "$(shell id -nu)")
 	@chown -R $(user):$(group) $(dirpath)/*
 endif
