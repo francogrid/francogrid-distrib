@@ -1,4 +1,5 @@
 repo ?= git://github.com/francogrid/sim.git
+branch ?= master
 dir ?=
 user ?= $(shell id -nu)
 group ?= $(user)
@@ -13,13 +14,13 @@ all: update build
 init:
 	@echo "### osmake initialization ###"
 	@git remote add -f opensim $(repo)
-	@git merge -s ours --no-commit opensim/master
-	@git read-tree --prefix=sources -u opensim/master
-	@git commit -m "Merge branch 'master' of $(repo) in sources/ directory."
+	@git merge -s ours --no-commit opensim/$(branch)
+	@git read-tree --prefix=sources -u opensim/$(branch)
+	@git commit -m "Merge branch $(branch) of $(repo) in sources/ directory."
 
 update:
 	@if ! test -d "sources"; then make init; \
-	else git pull -s subtree opensim master; fi
+	else git pull -s subtree opensim $(branch); fi
 
 prebuild:
 	@if ! test -d "sources"; then make init; \
