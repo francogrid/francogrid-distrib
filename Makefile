@@ -1,10 +1,10 @@
 repo ?= git://github.com/francogrid/sim.git
 branch ?= master
-dir ?=
-user ?= $(shell id -nu)
-group ?= $(user)
+d ?=
+u ?= $(shell id -nu)
+g ?= $(u)
 
-dirpath := $(shell echo $(dir) | grep -E '^/.*' || echo $(PWD)/$(dir))
+dirpath := $(shell echo $(d) | grep -E '^/.*' || echo $(PWD)/$(d))
 bindir := $(dirpath)/bin
 etcdir := $(dirpath)/etc
 NANT = $(strip $(shell which nant 2>/dev/null))
@@ -55,17 +55,17 @@ install: test-param-dir
 	@cd sources; tar cf - bin | tar xf - -C $(dirpath)
 	@tar cf - etc | tar xf - -C $(dirpath)
 	@cp -a tools/* $(dirpath)/
-ifneq ("$(user)", "$(shell id -nu)")
-	@chown -R $(user):$(group) $(dirpath)/*
+ifneq ("$(u)", "$(shell id -nu)")
+	@chown -R $(u):$(g) $(dirpath)/*
 endif
 	@echo "### INSTALLATION COMPLETE ###"
 	@echo "installation path: $(dirpath)"
-	@echo "user: $(user)"
-	@echo "group: $(group)"
+	@echo "user: $(u)"
+	@echo "group: $(g)"
 
 test-param-dir:
-ifeq ($(dir),)
-	@echo "You must provide a destination: dir=<path>"
+ifeq ($(d),)
+	@echo "You must provide a destination: d=<path>"
 	@exit 1
 endif
 
