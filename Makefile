@@ -1,3 +1,6 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
 repo ?= git://github.com/francogrid/sim.git
 branch ?= master
 d ?=
